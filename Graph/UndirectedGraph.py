@@ -38,18 +38,40 @@ class UndirectedGraph:
 	def BFS(self, start_vertex, end_vertex):
 		queue = [start_vertex]
 		visited = [start_vertex]
+		trace = ""
 
 		while(len(queue) != 0):
 			popped = queue.pop(0)
+			trace = trace + " " + str(popped) 
+
 			if popped == end_vertex:
-				return True
+				return [True, trace]
 
 			for adjacent_edge in self.graph[popped]:
 				if adjacent_edge not in visited:
 					visited.append(adjacent_edge)
 					queue.append(adjacent_edge)
 
-		return False
+		return [False, trace]
+
+	def DFS(self, start_vertex, end_vertex):
+		stack = [start_vertex]
+		visited = [start_vertex]
+		trace = ""
+
+		while(len(stack) != 0):
+			popped = stack.pop(-1)
+			trace = trace + " " + str(popped)
+
+			if popped == end_vertex:
+				return [True, trace]
+
+			for adjacent_edge in self.graph[popped]:
+				if adjacent_edge not in visited:
+					visited.append(adjacent_edge)
+					stack.append(adjacent_edge)
+
+		return [False, trace]
 
 graph = UndirectedGraph()
 
@@ -61,6 +83,11 @@ graph.add_edge(4, 5)
 graph.add_edge(5, 6)
 
 graph.print_graph()
+
+isPath = graph.BFS(0, 5)
+print(isPath)
+isPath = graph.BFS(0, 3)
+print(isPath)
 
 isPath = graph.BFS(0, 5)
 print(isPath)
