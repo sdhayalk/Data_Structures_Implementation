@@ -9,8 +9,11 @@ class UndirectedGraph:
 	def delete_vertex(self, vertex):
 		self.graph.pop(vertex, None)
 
-		for key, value_list in enumerate(self.graph):
-			value_list.remove(vertex)
+		try:
+			for key, value_list in self.graph.items():
+				value_list.remove(vertex)
+		except:
+			pass	# vertex not present in value_list
 
 	def add_edge(self, from_edge, to_edge):
 		if from_edge not in self.graph:
@@ -30,6 +33,7 @@ class UndirectedGraph:
 	def print_graph(self):
 		for key, value_list in self.graph.items():
 			print(key, ":", value_list)
+		print()
 
 graph = UndirectedGraph()
 
