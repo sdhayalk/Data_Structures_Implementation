@@ -94,3 +94,8 @@ isPath = graph.BFS(0, 5)
 print(isPath)
 isPath = graph.BFS(0, 3)
 print(isPath)
+
+isCycle = graph.detect_cycle(0)
+print(isCycle)
+isCycle = graph.detect_cycle(5)
+print(isCycle)

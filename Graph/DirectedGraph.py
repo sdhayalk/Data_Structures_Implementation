@@ -70,6 +70,20 @@ class DirectedGraph:
 
 		return [False, trace]
 
+	def detect_cycle(self, start_vertex):
+		stack = [start_vertex]
+
+		while(len(stack) != 0):
+			popped = stack.pop(-1)
+
+			
+			for adjacent_edge in self.graph[popped]:
+				if adjacent_edge in stack:
+					return True
+				
+				stack.append(adjacent_edge)
+
+		return False
 
 graph = DirectedGraph()
 
@@ -95,3 +109,9 @@ isPath = graph.BFS(0, 3)
 print(isPath)
 isPath = graph.BFS(3, 0)
 print(isPath)
+
+graph.add_edge(2, 0)
+isCycle = graph.detect_cycle(0)
+print(isCycle)
+isCycle = graph.detect_cycle(5)
+print(isCycle)
