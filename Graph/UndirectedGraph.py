@@ -11,7 +11,7 @@ class UndirectedGraph:
 
 		for key, value_list in enumerate(self.graph):
 			value_list.remove(vertex)
-			
+
 	def add_edge(self, from_edge, to_edge):
 		if from_edge not in self.graph:
 			self.graph[from_edge] = [to_edge]
@@ -27,5 +27,15 @@ class UndirectedGraph:
 		self.graph[from_edge].remove(to_edge)
 		self.graph[to_edge].remove(from_edge)
 
+	def print_graph(self):
+		for key, value_list in self.graph.items():
+			print(key, ":", value_list)
 
+graph = UndirectedGraph()
 
+graph.add_edge(0, 1)
+graph.add_edge(0, 2)
+graph.add_edge(1, 2)
+graph.add_edge(2, 3)
+
+graph.print_graph()
